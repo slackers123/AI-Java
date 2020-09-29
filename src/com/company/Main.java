@@ -5,6 +5,7 @@ import java.util.Random;
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println("Hello");
         float X[][] = {
                 {0, 0, 1},
                 {0, 1, 1},
