@@ -5,13 +5,13 @@ import java.util.Random;
 public class Main {
 
     public static void main(String[] args) {
-        float X[][] = {
+        float[][] X = {
                 {0, 0, 1},
                 {0, 1, 1},
                 {1, 0, 1},
                 {1, 1, 1}
         };
-        float y[][] = {
+        float[][] y = {
                 {0},
                 {1},
                 {1},
@@ -28,8 +28,19 @@ public class Main {
             float[] k2_error = matrixSubtract(y, k2);
             if ((i % 10000) == 0) {
                 System.out.println("Error:" + mean(matrixAbs(k2_error)));
+                printFloatMatrix(k2);
             }
+
+            float [] k2_delta = doit(k2, k2_error);
         }
+    }
+
+    private static float[] doit(float[][] x, float[] y) {
+        float[][] nwY = new float[y.length][0];
+        nwY[0] = y;
+        float[][] temp = dot(x, nwY);
+
+        return new float[]{};
     }
 
     private static float[][] dot(float[][] a, float[][] b) {
@@ -45,7 +56,7 @@ public class Main {
             System.out.println("Matrices cannot be multiplied");
         }
         else{
-            float prod[][] = new float[row1][col2];
+            float[][] prod = new float[row1][col2];
 
             for(int i = 0; i < row1; i++){
                 for(int j = 0; j < col2; j++){
@@ -104,7 +115,7 @@ public class Main {
     }
 
     private static float sigmoid(float x) {
-        return (float)(1/(1+Math.exp((double)x)));
+        return (float) (1 / (1 + Math.exp(x)));
     }
 
     private static float[][] generateRandomMatrix(int lenA, int lenB) {
